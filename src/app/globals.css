@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.btn {
+  @apply px-3 py-2.5 shadow-xl z-10 inline-flex items-center gap-2 w-fit duration-300;
+}
+
+.btn-filled {
+  @apply rounded bg-gelap border-2 border-gelap text-terang;
+}
+
+.btn-outline {
+  @apply border-2 border-gray-950  text-gray-950 shadow-xl leading-6 bg-terang  rounded-lg font-bold;
+}
