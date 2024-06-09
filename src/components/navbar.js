@@ -3,9 +3,13 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { FaTimes, FaBars, FaGithub } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
+import { FiGlobe } from "react-icons/fi";
 
 const Navbar = () => {
+  const { t, i18n } = useTranslation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
+  const [language, setLanguage] = useState(i18n.language);
 
   const toggleMobileNav = () => {
     setMobileNavOpen(!mobileNavOpen);
@@ -13,6 +17,12 @@ const Navbar = () => {
 
   const closeMobileNav = () => {
     setMobileNavOpen(false);
+  };
+
+  const handleLanguageToggle = () => {
+    const newLanguage = language === "en" ? "id" : "en";
+    i18n.changeLanguage(newLanguage);
+    setLanguage(newLanguage);
   };
 
   useEffect(() => {
@@ -32,28 +42,28 @@ const Navbar = () => {
   }, [mobileNavOpen]);
 
   return (
-    <div className="fixed w-full py-0 px-5 z-[999] duration-300 bg-terang">
+    <div className="fixed w-full z-[999] bg-white">
       <div className="flex items-center justify-between max-w-6xl px-2 py-4 mx-auto">
         <div className="flex items-center gap-4">
-          <div className="grid text-xl rounded-full text-terang bg-gelap size-10 place-items-center">
+          <div className="grid text-xl text-white bg-black rounded-full size-10 place-items-center">
             LR
           </div>
           <div>
             <h4 className="text-lg font-bold uppercase">xrzky</h4>
           </div>
         </div>
-        <ul className="gap-10 md:flex hidden hover:*:text-gelap *:duration-200">
+        <ul className="gap-10 md:flex hidden hover:*:text-black *:duration-200">
           <li>
-            <Link href="#home">Home</Link>
+            <Link href="#home">{t("navbar.home")}</Link>
           </li>
           <li>
-            <Link href="#techstack">Tech Stack</Link>
+            <Link href="#techstack">{t("navbar.techstack")}</Link>
           </li>
           <li>
-            <Link href="#project">Projects</Link>
+            <Link href="#project">{t("navbar.projects")}</Link>
           </li>
           <li>
-            <Link href="#contact">Contact Us</Link>
+            <Link href="#contact">{t("navbar.contact")}</Link>
           </li>
         </ul>
         <div className="flex items-center gap-6">
@@ -64,6 +74,15 @@ const Navbar = () => {
           >
             <FaGithub size={24} />
           </Link>
+          <div className="items-center hidden gap-2 md:flex">
+            <button
+              onClick={() => handleLanguageToggle()}
+              className="flex items-center gap-1 px-2 py-1"
+            >
+              <FiGlobe size={20} />
+              {language === "en" ? "ID" : "EN"}
+            </button>
+          </div>
           <span
             id="menubar"
             className="text-xl cursor-pointer md:hidden"
@@ -76,7 +95,7 @@ const Navbar = () => {
 
       <div
         id="mobile-nav"
-        className={`fixed top-0 right-0 h-full bg-terang shadow-lg z-50 w-3/4 max-w-sm transform transition-transform duration-300 ${
+        className={`fixed top-0 right-0 h-full bg-white shadow-lg z-50 w-3/4 max-w-sm transform transition-transform duration-300 ${
           mobileNavOpen ? "translate-x-0" : "translate-x-full"
         } `}
       >
@@ -90,7 +109,7 @@ const Navbar = () => {
         <ul className="flex flex-col p-4">
           <li className="my-2">
             <Link href="#home" className="text-lg" onClick={closeMobileNav}>
-              Home
+             {t("navbar.home")}
             </Link>
           </li>
           <li className="my-2">
@@ -99,20 +118,29 @@ const Navbar = () => {
               className="text-lg"
               onClick={closeMobileNav}
             >
-              Tech Stack
+              {t("navbar.techstack")}
             </Link>
           </li>
           <li className="my-2">
             <Link href="#project" className="text-lg" onClick={closeMobileNav}>
-              Projects
+              {t("navbar.projects")}
             </Link>
           </li>
           <li className="my-2">
             <Link href="#contact" className="text-lg" onClick={closeMobileNav}>
-              Contact Us
+              {t("navbar.contact")}
             </Link>
           </li>
         </ul>
+        <div className="absolute bottom-0 left-0 w-full p-4 bg-white">
+          <button
+            onClick={handleLanguageToggle}
+            className="flex items-center justify-center w-full gap-2 px-4 py-2 border rounded-full"
+          >
+            <FiGlobe size={20} />
+            {language === "en" ? "Bahasa Indonesia" : "English"}
+          </button>
+        </div>
       </div>
     </div>
   );

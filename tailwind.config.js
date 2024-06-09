@@ -4,6 +4,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/hooks/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -19,16 +20,17 @@ module.exports = {
         'poppins': ['Poppins', 'sans-serif']
       },
       colors: {
-        "gelap": "#020617",
-        "terang": "#ffffff",
-        "abu": "#374151",
-        "netral": "#262626",
-        "merah": "#dc2626",
-        "biru": "#2563eb",
-        "kuning": "#eab308",
+        "black": "#020617",
+        "white": "#ffffff",
+        "grey": "#374151",
+        "neutral": "#262626",
+        "red": "#dc2626",
+        "blue": "#2563eb",
+        "yellow": "#eab308",
         "cyan": "#22d3ee",
-        "awan": "#0369a1",
-        "abu-muda": "#f3f4f6"
+        "sky": "#0369a1",
+        "light-grey": "#f3f4f6",
+        "green": "#4ade80"
       },
     },
   },
