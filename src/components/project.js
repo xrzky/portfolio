@@ -1,41 +1,27 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
-import project1 from "/public/project1.png";
-import project2 from "/public/project2.png";
-import project3 from "/public/project3.png";
+import useProjects from "@/hooks/useProjects";
 import Link from "next/link";
-
-const projects = [
-  {
-    title: "E-Commerce Website",
-    description:
-      "This project build with techstack Vue Js, UI Kit, Pinia, Laravel, MySQL and Midtrans Payment Gateway",
-    link: "https://rstore.idsolutions.id/",
-    image: project1,
-    alt: "e-commerce",
-  },
-  {
-    title: "Invoice Back-End",
-    description: "Invoice Backend build with Node JS, PostreSQL and Express JS",
-    link: "https://github.com/xrzky/Invoice-Backend",
-    image: project2,
-    alt: "invoice",
-  },
-  {
-    title: "Pokedex Website",
-    description:
-      "Pokedex Website build with React JS or Next JS and TailwindCss",
-    link: "https://github.com/xrzky/Pokemon-NextJS",
-    image: project3,
-    alt: "pokedex",
-  },
-];
+import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
 const Project = () => {
+  const projects = useProjects();
+  const { t } = useTranslation();
+
   return (
-    <section id="project" className="container py-10 mx-auto min-h-96">
-      <div className="max-w-6xl px-4 mx-auto">
-        <h2 className="my-12 text-4xl font-bold text-center">Portfolio</h2>
+    <section id="project" className="container min-h-screen py-10 mx-auto">
+      <motion.div
+        whileInView={{ opacity: 1 }}
+        initial={{ opacity: 0 }}
+        transition={{ delay: 0.6 }}
+        className="max-w-6xl px-4 mx-auto"
+      >
+        <h2 className="my-12 text-4xl font-bold text-center">
+          {t("projects.title")}
+        </h2>
         {projects.map((project, index) => (
           <div
             key={index}
@@ -47,8 +33,8 @@ const Project = () => {
               </h3>
               <p className="mb-4 text-lg md:text-xs">{project.description}</p>
               <Link href={project.link}>
-                <button className="mt-5 mb-6 rounded-lg text-terang btn bg-gelap">
-                  View all work
+                <button className="mt-5 mb-6 text-white bg-black rounded-lg btn">
+                  {t("projects.viewWork")}
                 </button>
               </Link>
             </div>
@@ -63,7 +49,7 @@ const Project = () => {
             </div>
           </div>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };

@@ -19,9 +19,9 @@ body {
 }
 
 .btn-filled {
-  @apply rounded bg-gelap border-2 border-gelap text-terang;
+  @apply rounded bg-black border-2 border-black text-white;
 }
 
 .btn-outline {
-  @apply border-2 border-gray-950  text-gray-950 shadow-xl leading-6 bg-terang  rounded-lg font-bold;
+  @apply border-2 border-gray-950  text-gray-950 shadow-xl leading-6 bg-white  rounded-lg font-bold;
 }
