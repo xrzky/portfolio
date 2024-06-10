@@ -12,7 +12,7 @@ import axios from "axios";
 
 const Contact = () => {
   const { t } = useTranslation();
-  const [ successMessage, setSuccessMessage ] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const initialValues = {
     name: "",
@@ -29,15 +29,16 @@ const Contact = () => {
   });
 
   const onSubmit = async (values, { setSubmitting, resetForm }) => {
-    console.log("Form data", values);
     axios.defaults.headers.post["Content-Type"] = "text/plain";
     try {
-      const response = await axios.post('https://script.google.com/macros/s/AKfycbxUTthGshtI-yt61iyuU2VscULtwWVbvkQ3xj4P5exAmQ9HNa0vXwUXzYt7Z7_IkUvZ/exec', values);
-      console.log("Response", response);
-      setSuccessMessage("Form submitted successfully")
+      const response = await axios.post(
+        "https://script.google.com/macros/s/AKfycbxUTthGshtI-yt61iyuU2VscULtwWVbvkQ3xj4P5exAmQ9HNa0vXwUXzYt7Z7_IkUvZ/exec",
+        values
+      );
+      setSuccessMessage("Form submitted successfully");
       resetForm();
     } catch (error) {
-      console.log(error);
+      console.log("error", error);
     }
     setSubmitting(false);
   };
@@ -136,7 +137,9 @@ const Contact = () => {
                     type="submit"
                     className="w-full p-2 text-white bg-black rounded-md"
                   >
-                      {isSubmitting ? t("contact.form.sendingButton") : t("contact.form.sendButton")}
+                    {isSubmitting
+                      ? t("contact.form.sendingButton")
+                      : t("contact.form.sendButton")}
                   </button>
                   <p className="mt-4 text-center text-green">
                     {successMessage}
