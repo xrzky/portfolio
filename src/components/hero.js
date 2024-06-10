@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   FaInstagram,
@@ -13,20 +12,11 @@ import { GoArrowUpRight } from "react-icons/go";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import useHero from "@/hooks/useHero";
 
 const Hero = () => {
   const { t } = useTranslation();
-  const [time, setTime] = useState(null);
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
-    setTime(new Date());
-
-    return () => clearInterval(timer);
-  }, []);
+  const time = useHero();
 
   const formatTime = (time) => {
     return time.toLocaleTimeString("en-US", { hour12: false });
@@ -49,13 +39,13 @@ const Hero = () => {
               {t("hero.greeting")} <br />
               {t("hero.intro")} <span className="font-bold">Luki Rizki</span>
             </h1>
-            <Link href="#contact">
+            <Link prefetch={false} href="#contact">
               <button className="mt-5 btn btn-filled">
                 <FaEnvelope size={16} />
                 {t("hero.talkWithMe")}
               </button>
             </Link>
-            <Link href="#project">
+            <Link prefetch={false} href="#project">
               <button className="ml-4 font-semibold border-b-2 border-grey">
                 <GoArrowUpRight size={16} />
                 {t("hero.seeMyWork")}
@@ -120,7 +110,7 @@ const Hero = () => {
             <h3 className="lg:text-3xl !leading-normal relative md:text-2xl sm:text-lg">
               {t("hero.role")}
             </h3>
-            <Link href="https://drive.google.com/uc?export=download&id=19IllZs2bMIoX0GzBfa0PSFi-TvVMMn9H">
+            <Link prefetch={false} href="https://drive.google.com/uc?export=download&id=19IllZs2bMIoX0GzBfa0PSFi-TvVMMn9H">
               <button className="mt-10 lg:mt-10 md:mt-0 btn btn-outline">
                 <FaDownload size={24} />
                 {t("hero.downloadCV")}

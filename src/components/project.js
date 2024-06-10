@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import React from "react";
-import useProjects from "@/hooks/useProjects";
+import listProjects from "@/config/listProjects";
 import Link from "next/link";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
 
 const Project = () => {
-  const projects = useProjects();
+  const projects = listProjects();
   const { t } = useTranslation();
 
   return (
@@ -32,7 +32,7 @@ const Project = () => {
                 {project.title}
               </h3>
               <p className="mb-4 text-lg md:text-xs">{project.description}</p>
-              <Link href={project.link}>
+              <Link href={project.link} prefetch={false}>
                 <button className="mt-5 mb-6 text-white bg-black rounded-lg btn">
                   {t("projects.viewWork")}
                 </button>

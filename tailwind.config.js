@@ -4,7 +4,7 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/hooks/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/config/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -20,6 +20,8 @@ module.exports = {
         'poppins': ['Poppins', 'sans-serif']
       },
       colors: {
+        transparent: "transparent",
+        currentColor: "currentColor",
         "black": "#020617",
         "white": "#ffffff",
         "grey": "#374151",

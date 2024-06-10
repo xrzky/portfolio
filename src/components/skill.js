@@ -1,9 +1,10 @@
 "use client";
 
 import React from "react";
-import icons from "@/hooks/useIconSkill";
+import icons from "@/config/iconSkill";
 import { useTranslation } from "react-i18next";
 import { motion } from "framer-motion";
+import { generateDurations } from "@/utils/generateDuration";
 
 const Skill = () => {
   const { t } = useTranslation();
@@ -18,13 +19,14 @@ const Skill = () => {
         </h2>
         <motion.div
           whileInView={{ opacity: 1, x: 0 }}
-          initial= {{ opacity: 0, x: -100}}
-          transition={{ duration: 1.5}}
+          initial={{ opacity: 0, x: -100 }}
+          transition={{ duration: 1.5 }}
           className="flex flex-wrap items-center justify-center gap-4"
         >
           {icons.map((icon, index) => {
             const Icon = icon.iconName;
-            const durations = [1, 1.5, 2, 2.5, 3, 2.5, 2, 1.5, 1][index];
+            const duration = generateDurations(icons.length);
+            const durations = duration[index];
             return (
               <motion.div
                 key={index}

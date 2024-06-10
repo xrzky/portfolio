@@ -1,45 +1,19 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { FaTimes, FaBars, FaGithub } from "react-icons/fa";
-import { useTranslation } from "react-i18next";
 import { FiGlobe } from "react-icons/fi";
+import useNavbar from "@/hooks/useNavbar";
 
 const Navbar = () => {
-  const { t, i18n } = useTranslation();
-  const [mobileNavOpen, setMobileNavOpen] = useState(false);
-  const [language, setLanguage] = useState(i18n.language);
-
-  const toggleMobileNav = () => {
-    setMobileNavOpen(!mobileNavOpen);
-  };
-
-  const closeMobileNav = () => {
-    setMobileNavOpen(false);
-  };
-
-  const handleLanguageToggle = () => {
-    const newLanguage = language === "en" ? "id" : "en";
-    i18n.changeLanguage(newLanguage);
-    setLanguage(newLanguage);
-  };
-
-  useEffect(() => {
-    const handleClickOutNavbar = (event) => {
-      const mobileNav = document.getElementById("mobile-nav");
-
-      if (!mobileNav.contains(event.target)) {
-        closeMobileNav();
-      }
-    };
-
-    document.addEventListener("click", handleClickOutNavbar);
-
-    return () => {
-      document.removeEventListener("click", handleClickOutNavbar);
-    };
-  }, [mobileNavOpen]);
+  const {
+    t,
+    language,
+    mobileNavOpen,
+    toggleMobileNav,
+    closeMobileNav,
+    handleLanguageToggle,
+  } = useNavbar();
 
   return (
     <div className="fixed w-full z-[999] bg-white">
@@ -54,16 +28,24 @@ const Navbar = () => {
         </div>
         <ul className="gap-10 md:flex hidden hover:*:text-black *:duration-200">
           <li>
-            <Link href="#home">{t("navbar.home")}</Link>
+            <Link prefetch={false} href="#home">
+              {t("navbar.home")}
+            </Link>
           </li>
           <li>
-            <Link href="#techstack">{t("navbar.techstack")}</Link>
+            <Link prefetch={false} href="#techstack">
+              {t("navbar.techstack")}
+            </Link>
           </li>
           <li>
-            <Link href="#project">{t("navbar.projects")}</Link>
+            <Link prefetch={false} href="#project">
+              {t("navbar.projects")}
+            </Link>
           </li>
           <li>
-            <Link href="#contact">{t("navbar.contact")}</Link>
+            <Link prefetch={false} href="#contact">
+              {t("navbar.contact")}
+            </Link>
           </li>
         </ul>
         <div className="flex items-center gap-6">
@@ -108,12 +90,18 @@ const Navbar = () => {
         </div>
         <ul className="flex flex-col p-4">
           <li className="my-2">
-            <Link href="#home" className="text-lg" onClick={closeMobileNav}>
-             {t("navbar.home")}
+            <Link
+              prefetch={false}
+              href="#home"
+              className="text-lg"
+              onClick={closeMobileNav}
+            >
+              {t("navbar.home")}
             </Link>
           </li>
           <li className="my-2">
             <Link
+              prefetch={false}
               href="#techstack"
               className="text-lg"
               onClick={closeMobileNav}
@@ -122,12 +110,22 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="my-2">
-            <Link href="#project" className="text-lg" onClick={closeMobileNav}>
+            <Link
+              prefetch={false}
+              href="#project"
+              className="text-lg"
+              onClick={closeMobileNav}
+            >
               {t("navbar.projects")}
             </Link>
           </li>
           <li className="my-2">
-            <Link href="#contact" className="text-lg" onClick={closeMobileNav}>
+            <Link
+              prefetch={false}
+              href="#contact"
+              className="text-lg"
+              onClick={closeMobileNav}
+            >
               {t("navbar.contact")}
             </Link>
           </li>
