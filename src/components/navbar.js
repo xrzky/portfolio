@@ -6,13 +6,15 @@ import { FiGlobe } from "react-icons/fi";
 import useNavbar from "@/hooks/useNavbar";
 
 const Navbar = () => {
+  
   const {
     t,
     language,
     mobileNavOpen,
+    basePath,
     toggleMobileNav,
     closeMobileNav,
-    handleLanguageToggle,
+    handleLanguageToggle
   } = useNavbar();
 
   return (
@@ -28,23 +30,28 @@ const Navbar = () => {
         </div>
         <ul className="gap-10 md:flex hidden hover:*:text-black *:duration-200">
           <li>
-            <Link prefetch={false} href="#home">
+            <Link prefetch={false} href={`${basePath}/`}>
               {t("navbar.home")}
             </Link>
           </li>
           <li>
-            <Link prefetch={false} href="#techstack">
+            <Link prefetch={false} href={`${basePath}/#techstack`}>
               {t("navbar.techstack")}
             </Link>
           </li>
           <li>
-            <Link prefetch={false} href="#project">
+            <Link prefetch={false} href={`${basePath}/#project`}>
               {t("navbar.projects")}
             </Link>
           </li>
           <li>
-            <Link prefetch={false} href="#contact">
+            <Link prefetch={false} href={`${basePath}/#contact`}>
               {t("navbar.contact")}
+            </Link>
+          </li>
+          <li>
+            <Link prefetch={false} href={`${basePath}/blog`} >
+              Blog
             </Link>
           </li>
         </ul>
@@ -127,6 +134,16 @@ const Navbar = () => {
               onClick={closeMobileNav}
             >
               {t("navbar.contact")}
+            </Link>
+          </li>
+          <li className="my-2">
+            <Link
+              prefetch={false}
+              href="/blog"
+              className="text-lg"
+              onClick={closeMobileNav}
+            >
+              Blog
             </Link>
           </li>
         </ul>
