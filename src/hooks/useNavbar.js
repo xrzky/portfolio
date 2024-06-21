@@ -1,18 +1,17 @@
-import { useRouter } from "next/navigation";
+import ListNavbar from "@/config/listNavbar";
 import { useState, useEffect} from "react";
 import { useTranslation } from "react-i18next";
 
 const useNavbar = () => {
-  const router = useRouter();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [mobileNavOpen, setMobileNavOpen] = useState(false);
   const [language, setLanguage] = useState(i18n.language);
+
+  const navbarMenu = ListNavbar();
 
   const toggleMobileNav = () => {
     setMobileNavOpen(!mobileNavOpen);
   };
-
-  const basePath = router.pathname ? (router.pathname.startsWith('/blog/') ? '' : router.pathname) : '';
 
   const closeMobileNav = () => {
     setMobileNavOpen(false);
@@ -40,13 +39,12 @@ const useNavbar = () => {
     };
   }, [mobileNavOpen]);
   return {
-    t,
+    navbarMenu,
     language,
     mobileNavOpen,
     toggleMobileNav,
     closeMobileNav,
     handleLanguageToggle,
-    basePath
   }
 };
 

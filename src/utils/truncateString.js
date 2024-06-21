@@ -1,4 +1,4 @@
-export function truncateString(str, num = 300) {
+export function truncateString(str, num = 250) {
     if (str.length <= num) {
       return str;
     }
