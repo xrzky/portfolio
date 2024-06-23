@@ -48,5 +48,12 @@
     },
     "skills": {
       "title": "Tech Stack"
-  }
+    },
+    "blogs": {
+      "share": "Share",
+      "back": "Back",
+      "read": "Read",
+      "quote": "writing first, because you can't code without it",
+      "blog": "Blog"
+    }
 }

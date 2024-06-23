@@ -8,10 +8,9 @@ import useNavbar from "@/hooks/useNavbar";
 const Navbar = () => {
   
   const {
-    t,
+    navbarMenu,
     language,
     mobileNavOpen,
-    basePath,
     toggleMobileNav,
     closeMobileNav,
     handleLanguageToggle
@@ -29,31 +28,13 @@ const Navbar = () => {
           </div>
         </div>
         <ul className="gap-10 md:flex hidden hover:*:text-black *:duration-200">
-          <li>
-            <Link prefetch={false} href={`${basePath}/`}>
-              {t("navbar.home")}
+          {navbarMenu.map((navbarlist, index) => (
+          <li key={index}>
+            <Link prefetch={false} href={`/${navbarlist.path}`}>
+              {navbarlist.menu}
             </Link>
           </li>
-          <li>
-            <Link prefetch={false} href={`${basePath}/#techstack`}>
-              {t("navbar.techstack")}
-            </Link>
-          </li>
-          <li>
-            <Link prefetch={false} href={`${basePath}/#project`}>
-              {t("navbar.projects")}
-            </Link>
-          </li>
-          <li>
-            <Link prefetch={false} href={`${basePath}/#contact`}>
-              {t("navbar.contact")}
-            </Link>
-          </li>
-          <li>
-            <Link prefetch={false} href={`${basePath}/blog`} >
-              Blog
-            </Link>
-          </li>
+          ))}
         </ul>
         <div className="flex items-center gap-6">
           <Link
@@ -96,56 +77,18 @@ const Navbar = () => {
           />
         </div>
         <ul className="flex flex-col p-4">
-          <li className="my-2">
+        {navbarMenu.map((navbarlist, index) => (
+          <li key={index} className="my-2">
             <Link
               prefetch={false}
-              href="#home"
+              href={`/${navbarlist.path}`}
               className="text-lg"
               onClick={closeMobileNav}
             >
-              {t("navbar.home")}
+              {navbarlist.menu}
             </Link>
           </li>
-          <li className="my-2">
-            <Link
-              prefetch={false}
-              href="#techstack"
-              className="text-lg"
-              onClick={closeMobileNav}
-            >
-              {t("navbar.techstack")}
-            </Link>
-          </li>
-          <li className="my-2">
-            <Link
-              prefetch={false}
-              href="#project"
-              className="text-lg"
-              onClick={closeMobileNav}
-            >
-              {t("navbar.projects")}
-            </Link>
-          </li>
-          <li className="my-2">
-            <Link
-              prefetch={false}
-              href="#contact"
-              className="text-lg"
-              onClick={closeMobileNav}
-            >
-              {t("navbar.contact")}
-            </Link>
-          </li>
-          <li className="my-2">
-            <Link
-              prefetch={false}
-              href="/blog"
-              className="text-lg"
-              onClick={closeMobileNav}
-            >
-              Blog
-            </Link>
-          </li>
+          ))}
         </ul>
         <div className="absolute bottom-0 left-0 w-full p-4 bg-white">
           <button

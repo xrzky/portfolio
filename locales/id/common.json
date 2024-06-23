@@ -48,6 +48,13 @@
     },
     "skills": {
       "title": "Teknologi"
+    },
+    "blogs": {
+      "share": "Bagikan",
+      "back": "Kembali",
+      "read": "Baca",
+      "quote": "Menulis terlebih dahulu, karena kamu tidak bisa melakukan pemrograman tanpa itu",
+      "blog": "Blog"
     }
   }
   
